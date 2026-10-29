@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/var/www/html
     environment:
-      - CI_ENVIRONMENT=development
+      - CI_ENVIRONMENT=production
       - database.default.hostname=db
       - database.default.database=db_api
       - database.default.username=postgres
