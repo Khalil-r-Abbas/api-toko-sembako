@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - CI_ENVIRONMENT=development
+      - database.default.hostname=db
+      - database.default.database=db_api
+      - database.default.username=postgres
+      - database.default.password=password_rahasia
+      - database.default.DBDriver=Postgre
+      - database.default.port=5432
+    depends_on:
+      - db
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: db_api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password_rahasia
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
