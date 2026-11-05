@@ -15,3 +15,6 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], static function ($
     $routes->get('sale-items', 'SaleItems::index');
     $routes->get('sale-items/(:num)', 'SaleItems::show/$1');
 });
+
+$routes->get('token-manager', 'TokenManager::index');
+$routes->post('token-manager/generate', 'TokenManager::generate');
