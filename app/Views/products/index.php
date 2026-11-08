@@ -3,6 +3,8 @@
  * @var array $products
  */
 
+helper('url');
+
 // Rp 15.000 (desimal hanya muncul bila memang ada)
 $rupiah = static function ($n): string {
     $n = (float) $n;
@@ -65,6 +67,23 @@ $total = count($products);
             border-bottom: 1px solid var(--line);
         }
         .bar-inner { max-width: 72rem; margin: 0 auto; }
+
+        .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+        .btn {
+            flex: none;
+            margin-top: .375rem;
+            padding: .5rem 1rem;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #fff;
+            font-size: .9375rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 100ms ease-out;
+        }
+        .btn:active { transform: scale(.97); }
+        .btn:focus-visible { outline: .125rem solid var(--accent); outline-offset: .125rem; }
+        @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:active { transform: none; } }
 
         h1 {
             margin: 0;
@@ -175,8 +194,13 @@ $total = count($products);
 
 <header class="bar">
     <div class="bar-inner">
-        <h1>Produk</h1>
-        <p class="count" id="count" aria-live="polite"><?= $total ?> produk</p>
+        <div class="top">
+            <div>
+                <h1>Produk</h1>
+                <p class="count" id="count" aria-live="polite"><?= $total ?> produk</p>
+            </div>
+            <a class="btn" href="<?= esc(base_url('bikin-makan'), 'attr') ?>">Bikin makanan</a>
+        </div>
         <?php if ($total > 0): ?>
             <input class="search" id="q" type="search" placeholder="Cari nama atau barcode"
                    aria-label="Cari produk" autocomplete="off" enterkeyhint="search">

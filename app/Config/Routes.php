@@ -19,4 +19,9 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], static function ($
 $routes->get('token-manager', 'TokenManager::index');
 $routes->post('token-manager/generate', 'TokenManager::generate');
 
+//path untuk ke halaman utama menampilkan produk
 $routes->get('produk', 'ProductPage::index');
+
+//path untuk ke bagian cari resep
+$routes->get('bikin-makan', 'BikinMakan::index');
+$routes->get('bikin-makan/cari', 'BikinMakan::cari');
